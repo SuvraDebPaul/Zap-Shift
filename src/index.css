@@ -40,3 +40,47 @@ body {
 .swiper-button-next {
   color: #0e7c83 !important;
 }
+
+.testimonial-swiper .swiper-slide {
+  opacity: 0.4;
+  transition: 0.3s ease;
+}
+
+.testimonial-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: translateY(-20px) !important;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.mySwiper .swiper-slide {
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition: 0.3s;
+}
+
+.mySwiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  background: white;
+  border-radius: 20px;
+}
+
+.swiper-pagination {
+  position: relative !important;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #8bc1c3;
+  opacity: 0.4;
+  margin: 0 4px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4aaeac;
+  opacity: 1;
+}
