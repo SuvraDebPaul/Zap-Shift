@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+  /* dark --prefersdark; */
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #caeb66;
+  --color-primary-content: #caeb66;
+  --color-secondary: #03373d;
+}
+
+* {
+  font-family: "Urbanist", sans-serif;
+}
+
+body {
+  background-color: #eaeced;
+}
+
+.custom-pagination .swiper-pagination-bullet {
+  width: 20px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #b3d7d9; /* light color */
+  margin: 6px 0 !important;
+  opacity: 1;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  width: 60px;
+  background: #0e7c83; /* active teal */
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #0e7c83 !important;
+}
