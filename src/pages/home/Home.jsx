@@ -7,6 +7,7 @@ import Services from "./services/Services";
 import Brands from "./brands/brands";
 import LiveTracking from "./livetracking/LiveTracking";
 import Review from "./review/Review";
+import FAQ from "./faq/FAQ";
 
 const Home = () => {
   return (
@@ -19,6 +20,9 @@ const Home = () => {
         <LiveTracking></LiveTracking>
       </BoxContainer>
       <Review></Review>
+      <BoxContainer>
+        <FAQ></FAQ>
+      </BoxContainer>
     </>
   );
 };

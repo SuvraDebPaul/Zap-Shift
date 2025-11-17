@@ -8,22 +8,22 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink>Services</NavLink>
+        <NavLink to="services">Services</NavLink>
       </li>
       <li>
-        <NavLink>Coverage</NavLink>
+        <NavLink to="coverage">Coverage</NavLink>
       </li>
       <li>
-        <NavLink>About us</NavLink>
+        <NavLink to="about-us">About us</NavLink>
       </li>
       <li>
-        <NavLink>Pricing</NavLink>
+        <NavLink to="pricing">Pricing</NavLink>
       </li>
       <li>
-        <NavLink>Blog</NavLink>
+        <NavLink to="blog">Blog</NavLink>
       </li>
       <li>
-        <NavLink>Contact</NavLink>
+        <NavLink to="contact">Contact</NavLink>
       </li>
     </>
   );
@@ -68,7 +68,7 @@ const Navbar = () => {
             Sign In
           </Link>
           <div className="flex items-center">
-            <Link className="btn btn-primary text-secondary">Sign Up</Link>
+            <Link className="btn btn-primary text-secondary">Be a Rider</Link>
             <ArrowIcon size={24} className="w-10 h-10" />
           </div>
         </div>

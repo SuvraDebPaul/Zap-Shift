@@ -12,7 +12,7 @@ const RootLayout = () => {
       <main>
         <Outlet></Outlet>
       </main>
-      <footer>
+      <footer className="pb-2">
         <Footer></Footer>
       </footer>
     </>
