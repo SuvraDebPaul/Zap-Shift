@@ -2,7 +2,7 @@ import React from "react";
 import reviewQuote from "../../../assets/reviewQuote.png";
 
 const ReviewCard = ({ review }) => {
-  console.log(review);
+  // console.log(review);
   return (
     <div className="p-5 py-10">
       <img src={reviewQuote} alt="" className="w-8 h-8 mb-3" />

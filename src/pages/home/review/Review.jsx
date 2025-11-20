@@ -13,7 +13,7 @@ import reviewTopImg from "../../../assets/customer-top.png";
 import ReviewCard from "./ReviewCard";
 
 const Review = () => {
-  console.log(reviewData);
+  // console.log(reviewData);
 
   return (
     <div className="mb-20">
@@ -55,13 +55,13 @@ const Review = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div class="flex items-center justify-center gap-6 mt-8">
-          <button class="prev bg-base-100 text-secondary shadow-lg w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
-            <span class="text-xl">←</span>
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <button className="prev bg-base-100 text-secondary shadow-lg w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
+            <span className="text-xl">←</span>
           </button>
-          <div class="testimonial-pagination w-auto!"></div>
-          <button class="next bg-primary text-secondary w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
-            <span class="text-xl">→</span>
+          <div className="testimonial-pagination w-auto!"></div>
+          <button className="next bg-primary text-secondary w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
+            <span className="text-xl">→</span>
           </button>
         </div>
       </div>

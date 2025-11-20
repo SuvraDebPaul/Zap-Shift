@@ -11,6 +11,8 @@ import Pricing from "../pages/pricing/Pricing";
 import Blogs from "../pages/blog/Blogs";
 import Contact from "../pages/contact/Contact";
 import Services from "../pages/services/Services";
+import PrivateRoute from "./PrivateRoute";
+import Rider from "../pages/rider/Rider";
 
 const Router = createBrowserRouter([
   {
@@ -46,6 +48,14 @@ const Router = createBrowserRouter([
       {
         path: "services",
         element: <Services></Services>,
+      },
+      {
+        path: "rider",
+        element: (
+          <PrivateRoute>
+            <Rider></Rider>
+          </PrivateRoute>
+        ),
       },
     ],
   },

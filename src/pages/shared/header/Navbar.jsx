@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../../../components/logo/Logo";
 import BoxContainer from "../../../components/utilities/BoxContainer";
 import { Link, NavLink } from "react-router";
 import ArrowIcon from "../../../components/utilities/ArrowIcon";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+  const handleSignOut = () => {
+    signOutUser();
+  };
+  //console.log(user);
   const links = (
     <>
       <li>
@@ -64,14 +70,33 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end space-x-2">
-          <Link
-            to="login"
-            className="btn btn-outline btn-secondary hover:text-primary"
-          >
-            Sign In
-          </Link>
+          {user && (
+            <img
+              src={user.photoURL}
+              alt="profile"
+              className="w-12 h-12 rounded-full"
+            />
+          )}
+          {user ? (
+            <button
+              className="btn btn-outline btn-secondary hover:text-primary"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              to="login"
+              className="btn btn-outline btn-secondary hover:text-primary"
+            >
+              Sign In
+            </Link>
+          )}
+
           <div className="flex items-center">
-            <Link className="btn btn-primary text-secondary">Be a Rider</Link>
+            <Link to="rider" className="btn btn-primary text-secondary">
+              Be a Rider
+            </Link>
             <ArrowIcon size={24} className="w-10 h-10" />
           </div>
         </div>

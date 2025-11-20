@@ -1,16 +1,36 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Login = () => {
+  const { signUserWithEmail, signOutUser, getUserProfileFromFirebase } =
+    useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSignIn = (data) => {
-    console.log(data);
+  const handleSignIn = async (data) => {
+    try {
+      const email = data.email;
+      const password = data.password;
+      await signUserWithEmail(email, password);
+      const updatedUser = getUserProfileFromFirebase();
+      console.log(updatedUser);
+      navigate(`${location.state ? location.state : "/"}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignout = () => {
+    signOutUser().then(console.log("User Signout"));
+    const updatedUser = getUserProfileFromFirebase();
+    console.log(updatedUser);
   };
 
   return (
@@ -55,6 +75,12 @@ const Login = () => {
               </Link>
             </p>
           </form>
+          <button
+            onClick={handleSignout}
+            className="btn btn-primary text-secondary mt-4"
+          >
+            Signout
+          </button>
           {/* Google */}
           <button className="btn w-full mt-2">
             <svg

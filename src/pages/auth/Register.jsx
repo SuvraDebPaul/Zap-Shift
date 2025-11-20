@@ -1,11 +1,15 @@
 import React, { useRef } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import userImg from "../../assets/image-upload-icon.png";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
+    setUser,
     createNewUserWithEmail,
     updateUserProfile,
     getUserProfileFromFirebase,
@@ -24,15 +28,29 @@ const Register = () => {
     console.log(data);
     const email = data.email;
     const password = data.password;
-    const updatedInfo = {
-      displayName: data.name,
-      photoURL: "https://example.com/jane-q-user/profile.jpg",
-    };
+    let photoURL = "";
+    const displayName = data.name;
+    const profileImg = data.photo[0];
+    const formData = new FormData();
+    formData.append("image", profileImg);
+    const imageAPIurl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_Imgbb_API
+    }`;
     try {
       await createNewUserWithEmail(email, password);
+      await axios.post(imageAPIurl, formData).then((res) => {
+        photoURL = res.data.data.url;
+        console.log(res.data.data.url);
+      });
+      const updatedInfo = {
+        displayName,
+        photoURL,
+      };
       await updateUserProfile(updatedInfo);
       const updatedUser = getUserProfileFromFirebase();
       console.log(updatedUser);
+      setUser(updatedUser);
+      navigate(`${location.state ? location.state : "/"}`);
     } catch (error) {
       console.log(error);
     }
@@ -52,11 +70,16 @@ const Register = () => {
                 className="w-12 h-12 rounded-full object-cover cursor-pointer shadow-md"
                 onClick={handleImageClick}
               />
+              <label className="label">Please Upload Your Photo</label>
               <input
                 type="file"
                 accept="image/*"
-                ref={fileInputRef}
                 className="file-input hidden"
+                {...register("photo")}
+                ref={(e) => {
+                  fileInputRef.current = e; // keep your ref
+                  register("photo").ref(e); // keep RHF ref
+                }}
               />
             </fieldset>
             <fieldset className="fieldset">

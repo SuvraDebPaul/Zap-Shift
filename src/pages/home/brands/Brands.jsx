@@ -13,6 +13,12 @@ import brandsImg3 from "../../../assets/brands/moonstar.png";
 import brandsImg4 from "../../../assets/brands/randstad.png";
 import brandsImg5 from "../../../assets/brands/star.png";
 import brandsImg6 from "../../../assets/brands/start_people.png";
+import brandsImg7 from "../../../assets/brands/amazon.png";
+import brandsImg8 from "../../../assets/brands/casio.png";
+import brandsImg9 from "../../../assets/brands/moonstar.png";
+import brandsImg10 from "../../../assets/brands/randstad.png";
+import brandsImg11 from "../../../assets/brands/star.png";
+import brandsImg12 from "../../../assets/brands/start_people.png";
 
 const Brands = () => {
   return (
@@ -63,6 +69,24 @@ const Brands = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={brandsImg6} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brandsImg7} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brandsImg8} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brandsImg9} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brandsImg10} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brandsImg11} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brandsImg12} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
