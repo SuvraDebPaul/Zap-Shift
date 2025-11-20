@@ -62,17 +62,23 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="text-xl">
+          <Link to="/" className="text-xl">
             <Logo></Logo>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end space-x-2">
-          {user && (
+          {user ? (
             <img
               src={user.photoURL}
+              alt="profile"
+              className="w-12 h-12 rounded-full"
+            />
+          ) : (
+            <img
+              src="https://i.ibb.co.com/HDvMs58y/user-avatar-male-5.png"
               alt="profile"
               className="w-12 h-12 rounded-full"
             />
