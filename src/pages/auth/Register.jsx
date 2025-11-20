@@ -1,19 +1,50 @@
 import React, { useRef } from "react";
 import { Link } from "react-router";
 import userImg from "../../assets/image-upload-icon.png";
+import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+  const {
+    createNewUserWithEmail,
+    updateUserProfile,
+    getUserProfileFromFirebase,
+  } = useAuth();
   const fileInputRef = useRef(null);
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handelRegistration = async (data) => {
+    console.log(data);
+    const email = data.email;
+    const password = data.password;
+    const updatedInfo = {
+      displayName: data.name,
+      photoURL: "https://example.com/jane-q-user/profile.jpg",
+    };
+    try {
+      await createNewUserWithEmail(email, password);
+      await updateUserProfile(updatedInfo);
+      const updatedUser = getUserProfileFromFirebase();
+      console.log(updatedUser);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="card bg-base-100 w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="text-4xl font-extrabold -mb-2">Create an Account</h2>
           <p className="mb-2">Register with ZapShift</p>
-          <form action="">
+          <form action="" onSubmit={handleSubmit(handelRegistration)}>
             <fieldset className="fieldset">
               <img
                 src={userImg}
@@ -30,7 +61,16 @@ const Register = () => {
             </fieldset>
             <fieldset className="fieldset">
               <label className="label">Name</label>
-              <input type="text" className="input w-full" placeholder="Name" />
+              <input
+                type="text"
+                className="input w-full"
+                placeholder="Name"
+                name="name"
+                {...register("name", { required: true })}
+              />
+              {errors.name?.type === "required" && (
+                <p className="text-red-600">Name is Required</p>
+              )}
             </fieldset>
             <fieldset className="fieldset">
               <label className="label">Email</label>
@@ -38,7 +78,11 @@ const Register = () => {
                 type="email"
                 className="input w-full"
                 placeholder="Email"
+                {...register("email", { required: true })}
               />
+              {errors.email?.type === "required" && (
+                <p className="text-red-600">Email is Required</p>
+              )}
             </fieldset>
             <fieldset className="fieldset">
               <label className="label">Password</label>
@@ -46,7 +90,24 @@ const Register = () => {
                 type="password"
                 className="input w-full"
                 placeholder="Password"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).+$/,
+                })}
               />
+              {errors.password?.type === "required" && (
+                <p className="text-red-600">Password is Required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-600">Password Must Be 6 Character</p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p className="text-red-600">
+                  Password Must have 1 Uppercase, 1 Lowercase and 1 Special
+                  Character
+                </p>
+              )}
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>

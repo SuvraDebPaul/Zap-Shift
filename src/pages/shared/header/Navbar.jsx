@@ -64,7 +64,10 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end space-x-2">
-          <Link className="btn btn-outline btn-secondary hover:text-primary">
+          <Link
+            to="login"
+            className="btn btn-outline btn-secondary hover:text-primary"
+          >
             Sign In
           </Link>
           <div className="flex items-center">

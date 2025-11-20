@@ -1,27 +1,46 @@
 import React from "react";
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleSignIn = (data) => {
+    console.log(data);
+  };
+
   return (
     <div>
       <div className="card bg-base-100 w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="text-4xl font-extrabold -mb-2">Welcome Back</h2>
           <p className="mb-2">Login with ZapShift</p>
-          <form action="">
+          <form action="" onSubmit={handleSubmit(handleSignIn)}>
             <fieldset className="fieldset">
               <label className="label">Email</label>
               <input
                 type="email"
                 className="input w-full"
                 placeholder="Email"
+                {...register("email", { required: true })}
               />
+              {errors.email?.type === "required" && (
+                <p className="text-red-600">Email is Required</p>
+              )}
               <label className="label">Password</label>
               <input
                 type="password"
                 className="input w-full"
                 placeholder="Password"
+                {...register("password", { required: true, minLength: 6 })}
               />
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-600">Password Must Be 6 Character</p>
+              )}
               <div>
                 <a className="link link-hover">Forgot password?</a>
               </div>
