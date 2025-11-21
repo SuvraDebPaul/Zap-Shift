@@ -4,6 +4,7 @@ import BoxContainer from "../../../components/utilities/BoxContainer";
 import { Link, NavLink } from "react-router";
 import ArrowIcon from "../../../components/utilities/ArrowIcon";
 import { AuthContext } from "../../../contexts/AuthContext";
+import MyNavLink from "./MyNavLinks";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -14,22 +15,22 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="services">Services</NavLink>
+        <MyNavLink to="services">Services</MyNavLink>
       </li>
       <li>
-        <NavLink to="coverage">Coverage</NavLink>
+        <MyNavLink to="coverage">Coverage</MyNavLink>
       </li>
       <li>
-        <NavLink to="about-us">About us</NavLink>
+        <MyNavLink to="about-us">About us</MyNavLink>
       </li>
       <li>
-        <NavLink to="pricing">Pricing</NavLink>
+        <MyNavLink to="pricing">Pricing</MyNavLink>
       </li>
       <li>
-        <NavLink to="blog">Blog</NavLink>
+        <MyNavLink to="blog">Blog</MyNavLink>
       </li>
       <li>
-        <NavLink to="contact">Contact</NavLink>
+        <MyNavLink to="contact">Contact</MyNavLink>
       </li>
     </>
   );

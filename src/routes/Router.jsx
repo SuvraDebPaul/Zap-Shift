@@ -36,6 +36,7 @@ const Router = createBrowserRouter([
       {
         path: "pricing",
         element: <Pricing></Pricing>,
+        loader: () => fetch("/warehouses.json").then((res) => res.json()),
       },
       {
         path: "blog",
