@@ -13,12 +13,19 @@ import Contact from "../pages/contact/Contact";
 import Services from "../pages/services/Services";
 import PrivateRoute from "./PrivateRoute";
 import Rider from "../pages/rider/Rider";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyParcels from "../pages/dashboard/myParcels/MyParcels";
+import Loader from "../components/utilities/Loader";
+import Payment from "../pages/dashboard/payment/Payment";
+import PaymentSuccess from "../pages/dashboard/payment/PaymentSuccess";
+import PaymentCancled from "../pages/dashboard/payment/PaymentCancled";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
     errorElement: <ErrorPage></ErrorPage>,
+    hydrateFallbackElement: <Loader></Loader>,
     children: [
       {
         index: true,
@@ -63,6 +70,7 @@ const Router = createBrowserRouter([
   {
     path: "/",
     element: <AuthLayout></AuthLayout>,
+    hydrateFallbackElement: <Loader></Loader>,
     children: [
       {
         path: "login",
@@ -71,6 +79,29 @@ const Router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    hydrateFallbackElement: <Loader></Loader>,
+    children: [
+      {
+        path: "my-parcels",
+        element: <MyParcels></MyParcels>,
+      },
+      {
+        path: "payment/:parcelId",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "payment-success",
+        element: <PaymentSuccess></PaymentSuccess>,
+      },
+      {
+        path: "payment-cancled",
+        element: <PaymentCancled></PaymentCancled>,
       },
     ],
   },
